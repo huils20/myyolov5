@@ -158,7 +158,7 @@ class Focus(nn.Module):
 class Focus_re(nn.Module):
     # Focus wh information into c-space
     def __init__(self, c1, c2, k=1, s=1, p=None, g=1, act=True):  # ch_in, ch_out, kernel, stride, padding, groups
-        super(Focus, self).__init__()
+        super(Focus_re, self).__init__()
         self.conv = Conv(c1 * 4, c2, k, s, p, g, act)
         # self.contract = Contract(gain=2)
 
