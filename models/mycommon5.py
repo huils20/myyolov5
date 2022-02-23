@@ -69,7 +69,7 @@ class Bottleneck(nn.Module):
 class Bottleneck_off(nn.Module):
     # Standard bottleneck
     def __init__(self, c1, c2, shortcut=True, g=1, e=0.5):  # ch_in, ch_out, shortcut, groups, expansion
-        super(Bottleneck, self).__init__()
+        super(Bottleneck_off, self).__init__()
         c_ = int(c2 * e)  # hidden channels
         self.cv1 = Conv_off(c1, c_, 1, 1)
         self.cv2 = Conv_off(c_, c2, 3, 1, g=g)
