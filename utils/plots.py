@@ -101,9 +101,11 @@ def plot_images(images, targets, paths=None, fname='images.jpg', names=None, max
     # Plot image grid with labels
 
     if isinstance(images, torch.Tensor):
-        images = images.cpu().float().numpy()
+        # images = images.cpu().float().numpy()
+        images = images.cpu().float().tensor.detach().numpy()
     if isinstance(targets, torch.Tensor):
-        targets = targets.cpu().numpy()
+        # targets = targets.cpu().numpy()
+        targets = targets.cpu().tensor.detach().numpy()
 
     # un-normalise
     if np.max(images[0]) <= 1:
