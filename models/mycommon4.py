@@ -116,7 +116,7 @@ class C3_re(nn.Module):
         super().__init__()
         c_ = int(c2 * e)  # hidden channels
         self.cv1 = Conv(c1, c_, 1, 1)
-        self.cv2 = Conv(c1, c_, 1, 1)
+        self.cv2 = Conv(c1, c_, 1, 1)                                                                   
         self.cv3 = Conv(2 * c_, c2, 1)  # act=FReLU(c2)
         self.m = nn.Sequential(*(Bottleneck(c_, c_, shortcut, g, e=1.0) for _ in range(n)))
         # self.m = nn.Sequential(*[CrossConv(c_, c_, 3, 1, g, 1.0, shortcut) for _ in range(n)])
@@ -165,6 +165,7 @@ class Focus_re(nn.Module):
     def ckpt1(self,x):
         return self.conv(torch.cat([x[..., ::2, ::2], x[..., 1::2, ::2], x[..., ::2, 1::2], x[..., 1::2, 1::2]], 1))
     def forward(self, x):  # x(b,c,w,h) -> y(b,4c,w/2,h/2)
+        # x.
         x = cp.checkpoint(self.ckpt1, x)
         return x
         # return self.conv(self.contract(x))

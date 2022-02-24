@@ -216,6 +216,7 @@ class Focus_re(nn.Module):
     def ckpt1(self,x):
         return self.conv(torch.cat([x[..., ::2, ::2], x[..., 1::2, ::2], x[..., ::2, 1::2], x[..., 1::2, 1::2]], 1))
     def forward(self, x):  # x(b,c,w,h) -> y(b,4c,w/2,h/2)
+        x.requires_grad_()  # true
         x = cp.checkpoint(self.ckpt1, x)
         return x
         # return self.conv(self.contract(x))
