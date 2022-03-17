@@ -10,6 +10,7 @@ from PIL import Image, ImageDraw
 from utils.datasets import letterbox
 from utils.general import non_max_suppression, make_divisible, scale_coords, xyxy2xywh
 from utils.plots import color_list
+import torch.utils.checkpoint as cp
 
 
 def autopad(k, p=None):  # kernel, padding
