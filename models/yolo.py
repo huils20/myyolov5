@@ -190,7 +190,7 @@ class Model(nn.Module):
         copy_attr(m, self, include=('yaml', 'nc', 'hyp', 'names', 'stride'), exclude=())  # copy attributes
         return m
 
-    def info(self, verbose=False, img_size=640):  # print model information
+    def info(self, verbose=True, img_size=640):  # print model information
         model_info(self, verbose, img_size)
 
 
