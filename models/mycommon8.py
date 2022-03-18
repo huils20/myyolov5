@@ -63,7 +63,7 @@ class Conv(nn.Module):
                 #x = self.act(self.bn(self.conv(x)))
             x = cp.checkpoint(self.ckpt1, x)
         else:
-            x = self.ckpt1
+            x = self.act(self.bn(self.conv(x)))
         i += 1
         if i == 108:
             i = 1
