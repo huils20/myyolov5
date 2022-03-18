@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.append('./')  # to run '$ python *.py' files in subdirectories
 logger = logging.getLogger(__name__)
 
-from models.mycommon7 import *
+from models.mycommon8 import *
 from models.experimental import MixConv2d, CrossConv
 from utils.autoanchor import check_anchor_order
 from utils.general import make_divisible, check_file, set_logging
@@ -190,7 +190,7 @@ class Model(nn.Module):
         copy_attr(m, self, include=('yaml', 'nc', 'hyp', 'names', 'stride'), exclude=())  # copy attributes
         return m
 
-    def info(self, verbose=True, img_size=640):  # print model information
+    def info(self, verbose=False, img_size=640):  # print model information
         model_info(self, verbose, img_size)
 
 
