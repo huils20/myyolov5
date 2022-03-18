@@ -63,7 +63,7 @@ class Conv(nn.Module):
                 #x = self.act(self.bn(self.conv(x)))
             x = cp.checkpoint(self.ckpt1, x)
         else:
-            x = self.ckpt1(self, x)
+            x = self.ckpt1
         i += 1
         if i == 108:
             i = 1
@@ -71,7 +71,7 @@ class Conv(nn.Module):
         return x
 
     def forward(self, x):
-        df = pd.read_excel("/content/drive/MyDrive/data/res.xlsx")
+        df = pd.read_excel("/content/myyolov5/models/res.xlsx")
         arr = np.array(df)
         return self.recomp_by_CBL(arr, x)
 
