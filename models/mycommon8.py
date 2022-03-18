@@ -71,7 +71,7 @@ class Conv(nn.Module):
         return x
 
     def forward(self, x):
-        df = pd.read_excel("/home/lthpc/Huawei/yolov5/xxx.xlsx")
+        df = pd.read_excel("/content/drive/MyDrive/data/res.xlsx")
         arr = np.array(df)
         return self.recomp_by_CBL(arr, x)
 
