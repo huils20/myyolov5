@@ -125,15 +125,15 @@ class Model(nn.Module):
                 x = y[m.f] if isinstance(m.f, int) else [x if j == -1 else y[j] for j in m.f]  # from earlier layers
 
             if profile:
-                o = thop.profile(m, inputs=(x,), verbose=False)[0] / 1E9 * 2 if thop else 0  # FLOPS
+                o = thop.profile(m, inputs=(x,), verbose=False)[0] / 1E9 * 2 if thop else 0  # FLOPS G10^9 *2是啥??
                 t = time_synchronized()
-                for _ in range(10):
+                for _ in range(10): # 运行10次/10，秒变毫秒*1000
                     _ = m(x)
                 dt.append((time_synchronized() - t) * 100)
                 print('%10.1f%10.0f%10.1fms %-40s' % (o, m.np, dt[-1], m.type))
 
-            x = m(x)  # run
-            y.append(x if m.i in self.save else None)  # save output
+            x = m(x)  # run 块内有没有inplace?
+            y.append(x if m.i in self.save else None)  # save output 为concat而保存的块的输出
 
         if profile:
             print('%.1fms total' % sum(dt))
